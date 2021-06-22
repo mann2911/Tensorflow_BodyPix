@@ -6,7 +6,8 @@ import React,{useRef} from "react";
 import * as tf from '@tensorflow/tfjs';
 import * as bodyPix from '@tensorflow-models/body-pix';
 import Webcam from "react-webcam";
-
+import './App.css';
+// import Blurdemo1 from './blurdemo1';
 //Tasks
 //1)Installed tenserflow bodypix
 //2)React Webcame installed
@@ -32,7 +33,7 @@ function App() {
     console.log("Body pix model is loaded");
     setInterval(()=>{
       detect(net);
-    },100)
+    },300)
   }
 
   const detect= async(net)=>{
@@ -83,8 +84,13 @@ function App() {
     //   )
 
       const backgroundBlurAmount = 10;
+      // it is showing How many pixels in the background blend into each other. 
+      //Defaults to 3. it can be an integer between 1 and 20.
       const edgeBlurAmount = 10;
+      //it is showing How many pixels to blur on the edge between the person and the background by. 
+      //Defaults to 3. it can be an integer between 0 and 20.
       const flipHorizontal = false;
+      //it is use for flipped horizontally 
 
     
     // Draw the image with the background blurred onto the canvas. The edge between
@@ -103,6 +109,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="App-header">
       <Webcam ref={webcamRef}
       style={{
         position: "absolute",
@@ -129,7 +136,8 @@ function App() {
         height: 480,
       }}
       />
-      
+      {/* <Blurdemo1/> */}
+     </div> 
     </div>
   );
 }
