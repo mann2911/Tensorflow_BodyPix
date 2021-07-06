@@ -2,12 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Webcame from './webcame/Webcame';
+import Blurdemo2 from './blurdemo2';
 import reportWebVitals from './reportWebVitals';
+import Blurdemo1 from './blurdemo1';
+import Blurdemo3 from './blurdemo3';
+import Blurdemo4 from './blurdemo4';
+import VirtualBackground from './virtualBackground';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    {/* <App /> */}
+    {/* <Blurdemo3/> */}
+    {/* <Webcame/> */}
+    {/* <Blurdemo2/> */}
+    {/* <Blurdemo1/> */}
+    <Blurdemo4/>
+    {/* <VirtualBackground/> */}
+    </React.StrictMode>,
   document.getElementById('root')
 );
 

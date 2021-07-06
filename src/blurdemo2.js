@@ -12,7 +12,7 @@ import './App.css';
 //1)Installed tenserflow bodypix
 //2)React Webcame installed
 //3)using tenserflow bodypix function
-function App() {
+function Blurdemo2() {
 
   const webcamRef=useRef(null);
   const canvasRef=useRef(null);
@@ -33,7 +33,7 @@ function App() {
     console.log("Body pix model is loaded");
     setInterval(()=>{
       detect(net);
-    },600)
+    },300)
   }
 
   const detect= async(net)=>{
@@ -44,7 +44,6 @@ function App() {
 
       //Get Video Properties
       const video=webcamRef.current.video;
-      console.log("video",video)
       const videoHeight=video.videoHeight;
       const videoWidth=video.videoWidth;
 
@@ -84,7 +83,7 @@ function App() {
     //     10.0//pixelCellWidth 
     //   )
 
-      const backgroundBlurAmount = 8;
+      const backgroundBlurAmount = 10;
       // it is showing How many pixels in the background blend into each other. 
       //Defaults to 3. it can be an integer between 1 and 20.
       const edgeBlurAmount = 10;
@@ -143,4 +142,4 @@ function App() {
   );
 }
 
-export default App;
+export default Blurdemo2;
