@@ -1,0 +1,32 @@
+.background-container {
+    height: 320px;
+    width: 480px;
+    /* background-image: url(./assets/waterfall.jpg); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+}
+
+
+.canvasPerson {
+    height: 320px;
+    width: 480px;
+    background-image: url(./assets/waterfall.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    position: relative;
+    height: auto;
+    z-index: 9999;
+    margin: auto;
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    filter: FlipH;
+}
+.main{
+    align-items: center;
+}

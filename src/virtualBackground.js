@@ -2,7 +2,7 @@ import React, { useState ,useRef,useEffect} from 'react';
 import * as tf from '@tensorflow/tfjs';
 import * as bodyPix from '@tensorflow-models/body-pix';
 import { image } from '@tensorflow/tfjs';
-
+import './virtualBackground.css'
 const VirtualBackground=()=>{
     
     const videoElement = document.getElementById('video');
@@ -48,7 +48,9 @@ const VirtualBackground=()=>{
                 const edgeBlurAmount =6;
                 const flipHorizontal = true;
                 await net.segmentPerson(videoRef.current,{
-                    internalResolution:'medium'
+                    flipHorizontal: true,
+                    internalResolution: 'medium',
+                    segmentationThreshold: 0.5
                 }).catch(err=>console.log("error in segmentPerson method"))
                 .then(personSegmentation=>{
                     if(personSegmentation!==null){
@@ -63,7 +65,7 @@ const VirtualBackground=()=>{
         console.log("video",videoRef.current.width)
         const context=canvasRef.current.getContext('2d');
         console.log("context",context)
-        context.drawImage(videoRef.current,0,0);
+        context.drawImage(videoRef.current,0,0,videoRef.current.width,videoRef.current.height);
         let imageData=context.getImageData(0,0,videoRef.current.width,videoRef.current.height);
         let pixel=imageData.data;
         for(let p=0;p<pixel.length;p+=4){
@@ -78,19 +80,19 @@ const VirtualBackground=()=>{
         // bodyPix.drawMask(canvasRef.current,videoRef.current,)
 
     
-     const maskBackground = true;
-    // // Convert the segmentation into a mask to darken the background.
-    const foregroundColor = { r: 0, g: 0, b: 0, a: 0 };
-    const backgroundColor = { r: 0, g: 0, b: 0, a: 555 };
-    const backgroundDarkeningMask = bodyPix.toMask(personSegmentation, foregroundColor, backgroundColor);
+    //  const maskBackground = true;
+    // // // Convert the segmentation into a mask to darken the background.
+    // const foregroundColor = { r: 0, g: 0, b: 0, a: 0 };
+    // const backgroundColor = { r: 0, g: 0, b: 0, a: 555 };
+    // const backgroundDarkeningMask = bodyPix.toMask(personSegmentation,foregroundColor,backgroundColor);
 
-    const opacity = 0.7;
-    const maskBlurAmount = 3;
-    const flipHorizontal = false;
-    // // Draw the mask onto the image on a canvas.  With opacity set to 0.7 and
-    // // maskBlurAmount set to 3, this will darken the background and blur the
-    // // darkened background's edge.
-    bodyPix.drawMask(canvasRef.current,videoRef.current, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
+    // const opacity = 0.7;
+    // const maskBlurAmount = 3;
+    // const flipHorizontal = false;
+    // // // Draw the mask onto the image on a canvas.  With opacity set to 0.7 and
+    // // // maskBlurAmount set to 3, this will darken the background and blur the
+    // // // darkened background's edge.
+    // bodyPix.drawMask(canvasRef.current,videoRef.current, backgroundDarkeningMask, opacity, maskBlurAmount, flipHorizontal);
     }
 
       const stopVideo=()=>{
@@ -106,18 +108,31 @@ const VirtualBackground=()=>{
           setTemp(false);
       }
     return(
-        <div>
-            <div style={{textAlign:'center',margin:'10px'}}>Real Video
-            <video id="video" ref={videoRef}  width="480" height="320" autoPlay={true} playsInline></video></div>
-            <div style={{textAlign:'center'}}>Blur Video<canvas  id="canvas"  width="480" height="320" ref={canvasRef}></canvas></div>
-            <div style={{textAlign:'center'}}>
+        <>
+        <div className="row">
+            <div className="col-sm-2"></div>
+            <div className="col-sm-4 justify-content-end">
+                <h3>video</h3>
+                <video id="video" ref={videoRef} width="480" height="320" autoPlay={true} playsInline></video>
+            </div>
+            <div className="col-sm-6">
+                <h3>Canvas</h3>
+                <canvas  id="canvas" className="canvasPerson" width="480" height="320" ref={canvasRef}></canvas>
+            </div>
+         </div>
+        
+        <center>
+            <div className="row">
+                <div className="col-sm-12 align-items-center">
             <button id="start-btn" type="button" onClick={startVideo} >Start</button>
             <button id="stop-btn" type="button" onClick={stopVideo} >Stop</button>
             <button id="track-btn" type="button" onClick={trackVideo} hidden disabled={false}>Track</button>
             <button id="untrack-btn" type="button" hidden disabled={true}>UnTrack</button>
+                </div>
             </div>
+            </center>
 
-        </div>
+        </>
     );
 
 
