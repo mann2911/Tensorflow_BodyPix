@@ -90,18 +90,19 @@ const BlurVideoStream = () => {
 
     
       <div className="row ">
-        <div className="col-12 col-sm-6 border justify-content-center text-center">
-          <h2>Real Video Stream</h2>
-          <video id="video" ref={videoRef} width="480" height="420" autoPlay={true} playsInline></video>
-        </div>
-        <div className="col-12 col-sm-6 border text-center">
-          <h2>Blur Video Stream</h2>
-          <canvas id="canvas" width="480" height="420" ref={canvasRef} playsInline></canvas>
-        </div>
-        <div className="col-12 col-sm-12 text-center">
+      <div className="col-12 col-sm-12 text-center">
           <button id="start-btn"className="btn btn-success m-2 " type="button" onClick={startVideo} >Start</button>
           <button id="stop-btn" className="btn btn-danger m-2" type="button" onClick={stopVideo} >Stop</button>
         </div>
+        <div className="col-12 col-sm-6 border justify-content-center text-center">
+          <h2>Real Video Stream</h2>
+          <video id="video" ref={videoRef} width="380" height="320" autoPlay={true} playsInline></video>
+        </div>
+        <div className="col-12 col-sm-6 border text-center">
+          <h2>Blur Video Stream</h2>
+          <canvas id="canvas" width="380" height="320" ref={canvasRef} playsInline></canvas>
+        </div>
+        
       </div>
       
     </>
