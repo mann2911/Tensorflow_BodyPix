@@ -8,15 +8,17 @@
     background-color: transparent;
 }
 
+.canvasPersonImage{
 
-.canvasPerson {
-    height: 320px;
-    width: 480px;
     background-image: url(./assets/waterfall.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: transparent;
+}
+.canvasPerson {
+    height: 320px;
+    width: 480px;
     position: relative;
     height: auto;
     z-index: 9999;
