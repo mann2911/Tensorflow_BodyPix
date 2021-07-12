@@ -24,8 +24,10 @@ const VirtualBackground = () => {
       width = videoRef.current.width;
       height = videoRef.current.height;
     }
-    canvasRef.current.width = width;
-    canvasRef.current.height = height;
+    if (canvasRef) {
+      canvasRef.current.width = width;
+      canvasRef.current.height = height;
+    }
     videoRef.current.width = width;
     videoRef.current.height = height;
     setLoadImage(true);
@@ -107,10 +109,36 @@ const VirtualBackground = () => {
   };
   return (
     <>
-      <div className="row">
-        <div className="col-sm-2"></div>
-        <div className="col-sm-4 justify-content-end">
-          <h3>video</h3>
+      <nav className="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+        <a className="navbar-brand" href="#"></a>
+        <ul className="navbar-nav">
+          <h2 className="text-white">
+            Virtual Background Using TensorFlow BodyPix
+          </h2>
+        </ul>
+      </nav>
+      <br />
+      <div className="row ">
+        <div className="col-12 col-sm-12 text-center">
+          <button
+            id="start-btn"
+            className="btn btn-success m-2 "
+            type="button"
+            onClick={startVideo}
+          >
+            Start
+          </button>
+          <button
+            id="stop-btn"
+            className="btn btn-danger m-2"
+            type="button"
+            onClick={stopVideo}
+          >
+            Stop
+          </button>
+        </div>
+        <div className="col-12 col-sm-6 border justify-content-center text-center">
+          <h2>Real Video Stream</h2>
           <video
             id="video"
             ref={videoRef}
@@ -120,42 +148,23 @@ const VirtualBackground = () => {
             playsInline
           ></video>
         </div>
-        <div className="col-sm-6">
-          <h3>Canvas</h3>
+        <div className="col-12 col-sm-6 border text-center">
+          <h2>Virtual Background Stream</h2>
           <canvas
             id="canvas"
-            ref={canvasRef}
-            className={loadImage ? "canvasPerson canvasPersonImage" : ""}
             width="480"
             height="320"
+            ref={canvasRef}
+            className={loadImage ? "canvasPerson canvasPersonImage" : ""}
           ></canvas>
         </div>
-      </div>
-
-      <center>
-        <div className="row">
-          <div className="col-sm-12 align-items-center">
-            <button id="start-btn" type="button" onClick={startVideo}>
-              Start
-            </button>
-            <button id="stop-btn" type="button" onClick={stopVideo}>
-              Stop
-            </button>
-            <button
-              id="track-btn"
-              type="button"
-              onClick={trackVideo}
-              hidden
-              disabled={false}
-            >
-              Track
-            </button>
-            <button id="untrack-btn" type="button" hidden disabled={true}>
-              UnTrack
-            </button>
-          </div>
+        <div className="col-sm12 col-12 text-center m-3">
+          <h6 className="text-danger">
+            *Pl wait or press start button again in case of not loading the
+            Tensorflow modal.
+          </h6>
         </div>
-      </center>
+      </div>
     </>
   );
 };

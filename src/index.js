@@ -2,23 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
-import Blurdemo2 from './blurdemo2';
 import reportWebVitals from './reportWebVitals';
-import Blurdemo1 from './blurdemo1';
-import Blurdemo3 from './blurdemo3';
-import Blurdemo4 from './blurdemo4';
-import VirtualBackground from './virtualBackground';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    {/* <Blurdemo3/> */}
-    
-    {/* <Blurdemo2/> */}
-    {/* <Blurdemo1/> */}
-    {/* <Blurdemo4/> */}
-    <VirtualBackground/>
+    <App />
     </React.StrictMode>,
   document.getElementById('root')
 );
